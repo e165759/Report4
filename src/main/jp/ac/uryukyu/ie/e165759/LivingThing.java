@@ -2,12 +2,12 @@ package jp.ac.uryukyu.ie.e165759;
 
 /**
  * Created by e165759 on 2016/11/24.
- */
-public class LivingThing {
-    String name;
-    int hitPoint;
-    int attack;
-    boolean dead;
+ **/
+class LivingThing {
+    private String name;
+    private int hitPoint;
+    private int attack;
+    private boolean dead;
 
     /**
      * コンストラクタ。名前、最大HP、攻撃力を指定する。
@@ -15,7 +15,7 @@ public class LivingThing {
      * @param maximumHP HP
      * @param attack 攻撃力
      */
-    public LivingThing (String name, int maximumHP, int attack) {
+    LivingThing (String name, int maximumHP, int attack) {
         this.name = name;
         hitPoint = maximumHP;
         this.attack = attack;
@@ -27,15 +27,23 @@ public class LivingThing {
      * getterメソッドと同等。生死をboolean表現しているためメソッド名をisDead()とした。
      * @return boolean
      */
-    public boolean isDead(){
+    boolean isDead(){
         return this.dead;
+    }
+
+    void setDead(boolean dead){
+        this.dead = dead;
     }
 
     /*
     getName()
      */
-    public String getName(){
+    String getName(){
         return this.name;
+    }
+
+    int getHitPoint(){
+        return this.hitPoint;
     }
 
     /**
@@ -43,8 +51,8 @@ public class LivingThing {
      * attackに応じて乱数でダメージを算出し、hero.wounded()によりダメージ処理を実行。
      * @param opponent 攻撃対象
      */
-    public void attack(LivingThing opponent){
-        if(this.dead == true){
+    void attack(LivingThing opponent){
+        if(this.dead){
             return;
         }
         int damage = (int)(Math.random() * attack);
@@ -57,7 +65,7 @@ public class LivingThing {
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
      * @param damage 受けたダメージ
      */
-    public void wounded(int damage){
+    private void wounded(int damage){
         hitPoint -= damage;
         if( hitPoint < 0 ) {
             dead = true;
